@@ -1,0 +1,166 @@
+<div class="button-container">
+    <button (click)="back()" class="success">Back</button>
+</div>
+
+<div class="outer-container">
+    <div class="main-container">
+        <div class="heading-container">
+            <div class="sub-heading">Recruiter</div>
+        </div>
+        <div *ngIf="userResponse">
+            <div *ngFor="let response of userResponse.responses">
+                <div *ngFor="let question of recruiterQuestions.questions;;let i=index">
+                    <div *ngIf="question._id === response.questionId._id" class="question-main-container">
+                        <div class="question-container">
+                            <p>{{i+1}} . {{question.questionText}}</p>
+                            <ng-container *ngIf="question.questionType === 'DropDown'; else textAnswer">
+                                <select #selectElement (change)="onOptionSelected(selectElement.value, question)">
+                                    <option *ngFor="let option of question.options"
+                                        [selected]="option.optionText === (response.adminOptionId ? response.adminOptionId.optionText : response.optionId.optionText)">
+                                        {{option.optionText}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-template #textAnswer>
+                                <input type="text" #enteredValue (input)="onTextInput(question.id, enteredValue.value)"
+                                    [value]="response.adminAnswer || response.answer" />
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button (click)="updateRecruiterForm()" class="success">Update</button>
+        </div>
+    </div>
+</div>
+
+<div class="outer-container">
+    <div class="main-container">
+        <div class="heading-container">
+            <div class="sub-heading">Review 1</div>
+        </div>
+        <div *ngIf="reviewer1Response">
+            <div *ngFor="let response of reviewer1Response.responses">
+                <div *ngFor="let question of reviewer1Questions;let i=index">
+                    <div *ngIf="question._id === response.questionId._id" class="question-main-container">
+                        <div class="question-container">
+                            <p>{{i+1}} . {{question.questionText}}</p>
+                            <ng-container *ngIf="question.questionType === 'DropDown'; else textAnswer">
+                                <select #selectElement (change)="onOptionSelected(selectElement.value, question)">
+                                    <option *ngFor="let option of question.options"
+                                        [selected]="option.optionText === (response.adminOptionId ? response.adminOptionId.optionText : response.optionId.optionText)">
+                                        {{option.optionText}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-template #textAnswer>
+                                <input type="text" #enteredValue (input)="onTextInput(question.id, enteredValue.value)"
+                                    [value]="response.adminAnswer || response.answer" />
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button (click)="updateReviewer1Form()" class="success">Update</button>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="outer-container">
+    <div class="main-container">
+        <div class="heading-container">
+            <div class="sub-heading">Review 2</div>
+        </div>
+        <div *ngIf="reviewer2Response">
+            <div *ngFor="let response of reviewer2Response.responses">
+                <div *ngFor="let question of reviewer2Questions;let i=index">
+                    <div *ngIf="question._id === response.questionId._id" class="question-main-container">
+                        <div class="question-container">
+                            <p>{{i+1}} . {{question.questionText}}</p>
+                            <ng-container *ngIf="question.questionType === 'DropDown'; else textAnswer">
+                                <select #selectElement (change)="onOptionSelected(selectElement.value, question)">
+                                    <option *ngFor="let option of question.options"
+                                        [selected]="option.optionText === (response.adminOptionId ? response.adminOptionId.optionText : response.optionId.optionText)">
+                                        {{option.optionText}}
+                                    </option>
+                                </select>
+                            </ng-container>
+                            <ng-template #textAnswer>
+                                <input type="text" #enteredValue (input)="onTextInput(question.id, enteredValue.value)"
+                                    [value]="response.adminAnswer || response.answer" />
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button (click)="updateReviewer2Form()" class="success">Update</button>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="outer-container">
+    <div class="main-container">
+        
+        <div class="outer-container">
+
+            <div class="main-container" *ngIf="userResponse">
+
+                <div class="heading-container">
+
+                    <h3 class="sub-heading">Recruiter</h3>
+
+                </div>
+
+                <div class="question-main-container" *ngFor="let response of userResponse.responses;let i=index">
+                    <div>
+                        <p class="question-container">{{i+1}}. {{ response.questionId.questionText }}</p>
+                        <h6>{{ response?.optionId?.optionText || response.answer }}
+                            <a *ngIf="response.fileName" [href]="'http://localhost:4000/assets/' + response.fileName"
+                                target="_blank">View Image</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-container">
+
+            <div class="main-container" *ngIf="reviewer1Response">
+
+                <div class="heading-container">
+
+                    <h3 class="sub-heading">Review 1</h3>
+
+                </div>
+
+                <div class="question-main-container" *ngFor="let response of reviewer1Response.responses;let i=index">
+                    <div>
+                        <p class="question-container">{{i+1}}. {{ response.questionId.questionText }}</p>
+                        <h6>{{ response?.optionId?.optionText || response.answer }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-container">
+
+            <div class="main-container" *ngIf="reviewer2Response">
+
+                <div class="heading-container">
+
+                    <h3 class="sub-heading">Review 2</h3>
+
+                </div>
+
+                <div class="question-main-container" *ngFor="let response of reviewer2Response.responses;let i=index">
+                    <div>
+                        <p class="question-container">{{i+1}}. {{ response.questionId.questionText }}</p>
+                        <h6>{{ response?.optionId?.optionText || response.answer }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->

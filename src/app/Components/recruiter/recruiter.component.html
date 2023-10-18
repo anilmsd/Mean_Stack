@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+
+
+<div class="button-container">
+  <button (click)="getYourReviews()" class="styled-button">Your Reviews</button>
+  <button *ngIf="showFormButton" (click)="showrecruiterForm()" class="styled-button">Form</button>
+
+</div>
+
+<div *ngIf="recruiterForm" class="outer-container">
+  <div class="main-container" *ngIf="formData">
+    <div class="heading-container">
+
+      <!-- <h2 class="main-heading">{{ formData.formName }}</h2> -->
+
+      <h3 class="sub-heading">{{ formData.formName }}</h3>
+
+    </div>
+
+    <div class="question-main-container" *ngFor="let question of formData.questions;let i=index">
+      <div *ngIf="!question.branching">
+        <p class="question-container">{{i+1}}. {{ question.questionText }}</p>
+        <!-- <p>Question Type: {{ question.questionText }}</p> -->
+
+        <div *ngIf="question.questionType=='DropDown'">
+
+          <div>
+
+            <select #selectElement (change)="onOptionSelected(selectElement.value, question ,i)">
+
+              <option>Select Your Answer</option>
+
+              <option *ngFor="let option of question.options" [value]="option.optionText">{{ option.optionText }}
+              </option>
+
+            </select>
+
+          </div>
+        </div>
+
+        <div *ngIf="question.questionType=='Text'">
+          <input type="text" placeholder="Enter your Answer" #enteredValue
+            (input)="onTextInput(question.id, enteredValue.value)" />
+        </div>
+        <div *ngIf="question.questionType=='Date'">
+          <input type="date" #enteredDate (input)="onDateInput(question.id, enteredDate.value)" />
+        </div>
+
+        <div *ngIf="selectedOptions[question.id]" class="linked-question-container">
+          <div *ngFor="let optionQuestion of linkedQuestion?.optionQuestion;let i=index">
+            <p class="question-container">{{indexValue+i}} {{ optionQuestion.questionText }}</p>
+            <div *ngIf="optionQuestion.questionType=='Text'">
+              <input type="text" placeholder="Enter your Answer" #enteredValue
+                (input)="onTextInput(optionQuestion.id, enteredValue.value)" />
+            </div>
+            <div *ngIf="optionQuestion.questionType=='file'">
+              <input type="file" id="fileInput" (change)="onFileSelected($event, optionQuestion.id)"
+                (click)="getQuestion(optionQuestion.id)" />
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+    <button (click)="submitForm()">Submit</button>
+
+  </div>
+
+
+</div>
+
+
+<div class="table" *ngIf="recruiterReviews">
+  <div class="admin">
+    <h3>Recruiter Reviews</h3>
+  </div>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Candidate Name</th>
+        <th>Job Id</th>
+        <th>Partner_Client</th>
+        <th>End_Client</th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let data of recruiterReviewsData;let i = index">
+      <tr (click)="getReview(data._id)">
+        <td>{{i+1}}</td>
+        <td>{{data.candidateName}}</td>
+        <td>{{data.jobId}}</td>
+        <td>{{data.partnerClient}}</td>
+        <td>{{data.endClient}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<body class="body">
+  <div class="outer-container">
+    <div class="main-container" *ngIf="oneUserResponseData">
+        <div class="heading-container">
+            <h3 class="sub-heading">Recruiter</h3>
+        </div>
+        <div class="question-main-container" *ngFor="let response of oneUserResponseData.responses;let i=index">
+            <div>
+                <p class="question-container">{{i+1}}. {{ response.questionId.questionText }}</p>
+                <div *ngIf="response?.adminOptionId">
+                    <h6>{{response.adminOptionId.optionText}}</h6>
+                    <div class="answered-section admin">Answered by admin</div>
+                </div>
+                <div *ngIf="response?.optionId">
+                    <h6>{{response.optionId.optionText}}</h6>
+                    <div *ngIf="response?.optionId && response?.adminOptionId" class="answered-section user">Answered by you</div>
+                </div>
+                <div *ngIf="response?.adminAnswer">
+                    <h6>{{response.adminAnswer}}</h6>
+                    <div class="answered-section admin">Answered by admin</div>
+                </div>
+                <div *ngIf="response?.answer">
+                    <h6>{{response.answer}}</h6>
+                    <div *ngIf="response?.answer && response?.adminAnswer" class="answered-section user">Answered by you</div>
+                </div>
+                <a *ngIf="response.fileName" [href]="'http://localhost:4000/assets/' + response.fileName"
+                    target="_blank">View Image</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

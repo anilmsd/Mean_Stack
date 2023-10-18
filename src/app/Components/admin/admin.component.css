@@ -1,0 +1,120 @@
+/* General styles */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    margin-top: 100px;
+    margin-right: 10px;
+}
+.styled-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #009879;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; 
+    margin-left: 10px; 
+}
+
+.styled-button:hover {
+    background-color: #007b6e;
+}
+
+@media screen and (max-width: 768px) {
+    .button-container {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+.admin {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.styled-table {
+    width: 80%; /* Adjust this value as per your preference */
+    margin: 0 auto; /* This centers the table */
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 1px solid black;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.recruiters-count-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+.recruiters-count-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Date filter styles */
+
+.date-filter{
+    text-align: center;
+    margin: 20px;
+}
+
+.date-filter label {
+    margin-right: 10px;
+}
+
+.date-filter input[type="date"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.date-filter button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #009879;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.date-filter button:hover {
+    background-color: #007b6e;
+}

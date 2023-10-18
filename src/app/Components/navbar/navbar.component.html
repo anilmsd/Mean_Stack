@@ -1,0 +1,11 @@
+<nav class="navbar">
+    <img src="assets/logo.png" alt="Logo" class="logo">
+    <ul class="nav-links">
+        <!-- Your list items here -->
+        <li><a (click)="checkRoles('Recruiter')">Recruiter</a></li>
+        <li><a (click)="checkRoles('Review1')">Review 1</a></li>
+        <li><a (click)="checkRoles('Review2')">Review 2</a></li>
+        <li><a (click)="checkRoles('Admin')">Admin</a></li>
+    </ul>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+</nav>

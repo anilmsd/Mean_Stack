@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+
+<div class="button-container">
+    <button (click)="showAdminTable()" class="styled-button">All Reviews</button>
+    <button (click)="showReviewersCount()" class="styled-button">Reviewer Count</button>
+    <button (click)="Download()" class="styled-button" >Download XL</button>
+</div>
+
+
+
+<div *ngIf="showAdminTableFlag">
+    <div class="admin">
+        <h3>Admin</h3>
+        <input type="text" [(ngModel)]="searchQuery" (input)="changepagecount()" style="width:20%;" (input)="search()" placeholder="Search by Candidate Name or Job ID">
+
+    </div>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Candidate Name</th>
+                <th>Job Id</th>
+                <th>Partner_Client</th>
+                <th>End_Client</th>
+                <th>Reviewer 1</th>
+                <th>Reviewer 2</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let user of reviewer2Responses|paginate:{itemsPerPage:pagecount,currentPage:p};let i = index">
+            <tr (click)="viewReview(user.userResponseId, user.reviewer1ResponseId , user._id , i)">
+                <td>{{i+1}}</td>
+                <td>{{user?.userResponses?.candidateName}}</td>
+                <td>{{user?.userResponses?.jobId}}</td>
+                <td>{{user?.userResponses?.partnerClient}}</td>
+                <td>{{user?.userResponses?.endClient}}</td>
+                <td>{{user?.userResponses?.userId.name}}</td>
+                <td>{{user?.reviewer1Responses?.Reviewer2.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+
+
+<div *ngIf="showReviewersCountFlag">
+    <div class="admin">
+        <h3>Recruiters Count</h3>
+    </div>
+
+    <div class="date-filter">
+        <label for="fromDate">From Date:</label>
+        <input type="date" id="fromDate" [(ngModel)]="fromDate" name="fromDate">
+
+        <label for="toDate">To Date:</label>
+        <input type="date" id="toDate" [(ngModel)]="toDate" name="toDate">
+
+        <button (click)="onSubmit()">Submit</button>
+    </div>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Recruiter Name</th>
+                <th>Recruiter Email</th>
+                <th>Count</th>
+
+            </tr>
+        </thead>
+        <tbody *ngFor="let user of userData;let i = index">
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{user?.name}}</td>
+                <td>{{user?.email}}</td>
+                <td>{{user?.reviewsCount}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<!-- userReviews.ejs -->

@@ -1,0 +1,55 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #0a1f23;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    z-index: 999; /* Ensures it's on top of other elements */
+    width: 100%;
+  }
+  
+  /* Rest of your CSS remains the same */
+  
+.logo {
+    width: 100px; /* Adjust this value to your preference */
+    height: 50px; /* This keeps the aspect ratio */
+}
+
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0 10px;
+
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #ff4837;
+}

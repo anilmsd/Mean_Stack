@@ -1,0 +1,82 @@
+
+/* Add this CSS to your existing styles */
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #4caf50; /* Green color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.success:hover {
+    background-color: #45a049; /* Darker green color on hover */
+}
+
+.success:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+.success:active {
+    background-color: #4caf50; /* Keep color when clicked */
+}
+
+
+.outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    margin: 20px;
+}
+
+.main-container {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    width: 600px;
+    padding: 20px;
+    margin-top:20px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.heading-container {
+    text-align: center;
+}
+
+.sub-heading {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.question-main-container {
+    margin-bottom: 20px;
+}
+
+.question-container {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="date"], select {
+    width: 100%;
+    height:30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+
